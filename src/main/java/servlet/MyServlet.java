@@ -2,7 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.servlet.ServletException;
@@ -28,7 +28,7 @@ public class MyServlet extends HttpServlet {
 		Date endDate;
 			
 		//convert to dates
-		DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT, Locale.US);
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		try{
 			startDate = df.parse(startDateParam);
 			endDate = df.parse(endDateParam);
