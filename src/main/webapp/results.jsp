@@ -33,7 +33,7 @@
 				<td>${row.area}</td>
 				<td>${row.driller}</td>
 				<td>${row.casing}</td>
-				<td>${row.date}</td>
+				<td>${row.drilldate}</td>
 			</tr>
 		</c:forEach>
 	</table>

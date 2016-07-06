@@ -35,27 +35,35 @@ public class MyServlet extends HttpServlet {
 		}
 		catch (Exception e) 
 		{
-			req.setAttribute("errormsg", e.getMessage());  //Will be available as ${errormsg} in JSP
+			req.setAttribute("errormsg", e.getMessage());
 			RequestDispatcher view = req.getRequestDispatcher("error.jsp");  
 			view.forward(req, resp);
 			return;
 		}
 			
-		ArrayList<DrillholeRecord> results = DbHelper.SelectDrillholes(startDate, endDate);
-		if (results == null)
-		{
-			req.setAttribute("errormsg", "No records found!");  //Will be available as ${errormsg} in JSP
-			RequestDispatcher view = req.getRequestDispatcher("error.jsp");  
-			view.forward(req, resp);
-			return;
-		}
-			
-		/*
+		//fetch database records
 		ArrayList<DrillholeRecord> results = new ArrayList<DrillholeRecord>();
-		results.add(new DrillholeRecord("51-57", 49.90, 2972.40, 5404.30, 2661.70, "South East", "AF", 15.0, "1/1/1951"));
-		results.add(new DrillholeRecord("81-02", 213.00, 2625.20, 4793.50, 2668.50, "South East", "Beaver", 15.0, "1/1/1981"));
-		*/
 		
+		try{
+			results = DbHelper.SelectDrillholes(startDate, endDate);
+		}
+		catch (Exception e)
+		{
+			req.setAttribute("errormsg", e.getMessage());
+			RequestDispatcher view = req.getRequestDispatcher("error.jsp");  
+			view.forward(req, resp);
+			return;
+		}
+		
+		//check that some results were returned
+		if (results.size() == 0)
+		{
+			req.setAttribute("errormsg", "No records found in specified date range.");
+			RequestDispatcher view = req.getRequestDispatcher("error.jsp");  
+			view.forward(req, resp);
+			return;
+		}
+
 		req.setAttribute("results", results);  //Will be available as ${results} in JSP
 		RequestDispatcher view = req.getRequestDispatcher("results.jsp");  
         view.forward(req, resp);

@@ -8,7 +8,7 @@
 </head>
 <body bgcolor="#57B7DF">
     <p>
-    <h1>Error:</h1>
+    <h1>Oops, an error has occurred:</h1>
 	<p>
 	<c:out value="${errormsg}"/>
 	
