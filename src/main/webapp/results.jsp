@@ -6,7 +6,8 @@
     <title>Query results</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
-<body>
+<body bgcolor="#57B7DF">
+    <p>
     <h1>Results:</h1>
 	<p>
 	<table>

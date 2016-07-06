@@ -1,7 +1,6 @@
 package servlet;
 
 import java.util.*;
-import java.text.DateFormat;
 
 public class DrillholeRecord{
 
@@ -13,7 +12,7 @@ public class DrillholeRecord{
 	public String area;
 	public String driller;
 	public double casing;
-	public String date;
+	public Date drilldate;
 	
 	
 	public String getId() {
@@ -48,11 +47,11 @@ public class DrillholeRecord{
 		return casing;
 	}
 	
-	public String getDate(){
-		return date;
+	public Date getDrilldate(){
+		return drilldate;
 	}
 	
-	DrillholeRecord(String id, double length, double easting, double northing, double elevation, String area, String driller, double casing, String dateStr){
+	DrillholeRecord(String id, double length, double easting, double northing, double elevation, String area, String driller, double casing, Date drilldate){
 		this.id = id;
 		this.length = length;
 		this.easting = easting;
@@ -61,11 +60,7 @@ public class DrillholeRecord{
 		this.area = area;
 		this.driller = driller;
 		this.casing = casing;
-		this.date = dateStr;
-		
-		//TODO; catch java.text.ParseException 
-		//DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT, Locale.US);
-		//this.date = df.parse(dateStr);
+		this.drilldate = drilldate;
 	}
 
 }
