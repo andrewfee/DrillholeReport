@@ -33,15 +33,20 @@ public class MyServlet extends HttpServlet {
 			startDate = df.parse(startDateParam);
 			endDate = df.parse(endDateParam);
 		}
-		catch (java.text.ParseException e) 
+		catch (Exception e) 
 		{
+			req.setAttribute("errormsg", e.getMessage());  //Will be available as ${errormsg} in JSP
+			RequestDispatcher view = req.getRequestDispatcher("error.jsp");  
+			view.forward(req, resp);
 			return;
 		}
 			
 		ArrayList<DrillholeRecord> results = DbHelper.SelectDrillholes(startDate, endDate);
 		if (results == null)
 		{
-			//TODO: maybe send another attribute if no records are found?
+			req.setAttribute("errormsg", "No records found!");  //Will be available as ${errormsg} in JSP
+			RequestDispatcher view = req.getRequestDispatcher("error.jsp");  
+			view.forward(req, resp);
 			return;
 		}
 			
@@ -52,7 +57,6 @@ public class MyServlet extends HttpServlet {
 		*/
 		
 		req.setAttribute("results", results);  //Will be available as ${results} in JSP
-		
 		RequestDispatcher view = req.getRequestDispatcher("results.jsp");  
         view.forward(req, resp);
     }
