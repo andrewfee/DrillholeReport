@@ -2,15 +2,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Query results</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
-<body bgcolor="#57B7DF">
-    <p>
-    <h1>Oops, an error has occurred:</h1>
-	<p>
-	<c:out value="${errormsg}"/>
-	
-</body>
+	<head>
+		<title>Drillhole Report</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	</head>
+	<style>
+		body {
+		  font-family: "arial", sans-serif;
+		}
+	</style>
+	<body bgcolor="#57B7DF">
+		<p>
+		<h1>Oops, an error has occurred:</h1>
+		<p>
+		<c:out value="${errormsg}"/>
+		
+	</body>
 </html>

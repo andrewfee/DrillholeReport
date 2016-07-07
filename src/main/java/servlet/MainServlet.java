@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 
 @WebServlet("/servlet")
-public class MyServlet extends HttpServlet {
+public class MainServlet extends HttpServlet {
 
 	@Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -54,17 +54,9 @@ public class MyServlet extends HttpServlet {
 			view.forward(req, resp);
 			return;
 		}
-		
-		//check that some results were returned
-		if (results.size() == 0)
-		{
-			req.setAttribute("errormsg", "No records found in specified date range.");
-			RequestDispatcher view = req.getRequestDispatcher("error.jsp");  
-			view.forward(req, resp);
-			return;
-		}
 
-		req.setAttribute("results", results);  //Will be available as ${results} in JSP
+		req.setAttribute("numRecords", results.size());
+		req.setAttribute("results", results);
 		RequestDispatcher view = req.getRequestDispatcher("results.jsp");  
         view.forward(req, resp);
     }
