@@ -22,15 +22,18 @@ public class DbHelper{
 	
 
 	private static Connection getConnection() throws URISyntaxException, SQLException {
-		//String dbUrl = System.getenv("JDBC_DATABASE_URL");
-		//return DriverManager.getConnection(dbUrl);
+		String dbUrl = System.getenv("JDBC_DATABASE_URL");
+		return DriverManager.getConnection(dbUrl);
 		
+		/*
+		//this can be used for local testing
 		String dbUrl = "jdbc:postgresql://localhost/test";
 		Properties props = new Properties();
 		props.setProperty("user","postgres");
 		props.setProperty("password","sashai8");
 		props.setProperty("ssl","false");
 		return DriverManager.getConnection(dbUrl, props);
+		*/
 	}
 
 	public static ArrayList<DrillholeRecord> SelectDrillholes(java.util.Date start, java.util.Date end) throws URISyntaxException, SQLException 
