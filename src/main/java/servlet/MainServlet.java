@@ -13,21 +13,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 
+//
+//Summary: This servlet handles the POST request by querying the database
+//and forwarding the retrieved data to results.jsp
+//
 @WebServlet("/servlet")
 public class MainServlet extends HttpServlet {
 
+	//
+	//This method is called when user submits HTTP POST request from index.jsp
 	@Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 		
-		//get user input
+		//get user inputs
 		String startDateParam = req.getParameter("start");
 		String endDateParam = req.getParameter("end");
 			
 		Date startDate;
 		Date endDate;
 			
-		//convert to dates
+		//convert to Date objects
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		try{
 			startDate = df.parse(startDateParam);
@@ -41,11 +47,12 @@ public class MainServlet extends HttpServlet {
 			return;
 		}
 			
-		//fetch database records
-		ArrayList<DrillholeRecord> results = new ArrayList<DrillholeRecord>();
+		//list will store the retrieved DrillholeRecords
+		ArrayList<DrillholeRecord> records = new ArrayList<DrillholeRecord>();
 		
+		//fetch database records
 		try{
-			results = DbHelper.SelectDrillholes(startDate, endDate);
+			records = DbHelper.SelectDrillholes(startDate, endDate);
 		}
 		catch (Exception e)
 		{
@@ -55,8 +62,9 @@ public class MainServlet extends HttpServlet {
 			return;
 		}
 
-		req.setAttribute("numRecords", results.size());
-		req.setAttribute("results", results);
+		//forward retrieved records to results page
+		req.setAttribute("numRecords", records.size());
+		req.setAttribute("results", records);
 		RequestDispatcher view = req.getRequestDispatcher("results.jsp");  
         view.forward(req, resp);
     }

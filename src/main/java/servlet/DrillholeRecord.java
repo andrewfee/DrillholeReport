@@ -2,6 +2,8 @@ package servlet;
 
 import java.util.*;
 
+
+//Summary: this class represents a Drillhole Record as stored in the database
 public class DrillholeRecord{
 
 	public String id;
@@ -14,7 +16,8 @@ public class DrillholeRecord{
 	public double casing;
 	public Date drilldate;
 	
-	
+
+	//Accessor methods
 	public String getId() {
 		return id;
 	}
@@ -51,6 +54,7 @@ public class DrillholeRecord{
 		return drilldate;
 	}
 	
+	//Constructor
 	DrillholeRecord(String id, double length, double easting, double northing, double elevation, String area, String driller, double casing, Date drilldate){
 		this.id = id;
 		this.length = length;
