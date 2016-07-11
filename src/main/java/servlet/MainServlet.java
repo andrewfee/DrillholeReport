@@ -22,17 +22,17 @@ public class MainServlet extends HttpServlet {
 
 	//
 	//This method is called when user submits HTTP POST request from index.jsp
+	//
 	@Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		//get user inputs
 		String startDateParam = req.getParameter("start");
 		String endDateParam = req.getParameter("end");
-			
+		
 		Date startDate;
 		Date endDate;
-			
+		
 		//convert to Date objects
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		try{
@@ -46,7 +46,7 @@ public class MainServlet extends HttpServlet {
 			view.forward(req, resp);
 			return;
 		}
-			
+		
 		//list will store the retrieved DrillholeRecords
 		ArrayList<DrillholeRecord> records = new ArrayList<DrillholeRecord>();
 		
@@ -61,11 +61,11 @@ public class MainServlet extends HttpServlet {
 			view.forward(req, resp);
 			return;
 		}
-
+		
 		//forward retrieved records to results page
 		req.setAttribute("numRecords", records.size());
 		req.setAttribute("results", records);
 		RequestDispatcher view = req.getRequestDispatcher("results.jsp");  
-        view.forward(req, resp);
-    }
+		view.forward(req, resp);
+	}
 }

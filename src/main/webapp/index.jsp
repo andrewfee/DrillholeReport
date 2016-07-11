@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
+	<head>
 		<script>
 		function validateForm()
 		{
@@ -11,7 +11,7 @@
 				alert("Error: You must enter a value for Start date.");
 				document.inputForm.start.focus();
 				return false;
-			}		
+			}
 			if (document.inputForm.end.value=="")
 			{
 				alert("Error: You must enter a value for End date.");
@@ -26,24 +26,24 @@
 				document.inputForm.start.focus();
 				return false;
 			}
-			return true;			
+			return true;
 		}
 		</script>
-        <title>Drillhole Report</title>
-    </head>
-	 <style>
+		<title>Drillhole Report</title>
+	</head>
+	<style>
 		body {
 		  font-family: "arial", sans-serif;
 		}
 	</style>
-    <body bgcolor="#57B7DF">
+	<body bgcolor="#57B7DF">
 		<p>
 		<h1>Enter a date range to query drillholes:</h1>
 		<form name="inputForm" action="servlet" method="post" onSubmit="return validateForm()">
-            <p>
+			<p>
 			<p>
 			Start Date: <input type="Date" name="start">
-            <p>
+			<p>
 			End Date:&nbsp; <input type="Date" name="end">
 			<p>
 			<input type="submit" value="Submit">
